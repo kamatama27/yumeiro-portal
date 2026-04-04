@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ゆめいろべあーず | ポータルサイト</title>
+<meta name="description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、くまたちのコンテンツが盛りだくさん！">
+<meta name="keywords" content="ゆめいろべあーず,性格診断,マンガ,くま,キャラクター,ポータル">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>">
+<link rel="canonical" href="https://yumeiro.yonde-web.com/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ゆめいろべあーず | ポータルサイト">
+<meta property="og:description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、くまたちのコンテンツが盛りだくさん！">
+<meta property="og:image" content="https://yumeiro.yonde-web.com/assets/yumeiro_logo.png">
+<meta property="og:url" content="https://yumeiro.yonde-web.com/">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap');
+
+  :root {
+    --pink: #ff6b9d;
+    --pink-light: #ffa2c4;
+    --pink-pale: #fff0f5;
+    --purple: #c77dff;
+    --purple-light: #e0aaff;
+    --purple-pale: #f3e8ff;
+    --mint: #5dd9a3;
+    --mint-light: #a8f0d0;
+    --mint-pale: #e8fdf4;
+    --yellow: #ffe66d;
+    --yellow-light: #fff3b0;
+    --blue: #74c0fc;
+    --blue-pale: #e8f4ff;
+    --card: #ffffff;
+    --text: #5a4a6a;
+    --text-light: #9a8aaa;
+    --bg: #faf6ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Maru Gothic', 'Hiragino Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--purple-light);
+  }
+
+  .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    height: 44px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .header-logo:hover {
+    transform: scale(1.05);
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .header-nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    background: transparent;
+  }
+
+  .header-nav a:hover {
+    background: var(--purple-pale);
+    color: var(--purple);
+  }
+
+  /* ========== ヒーローセクション ========== */
+  .hero {
+    position: relative;
+    background: linear-gradient(170deg, var(--purple-pale) 0%, var(--pink-pale) 40%, var(--blue-pale) 70%, var(--mint-pale) 100%);
+    text-align: center;
+    padding: 48px 20px 32px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(199,125,255,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(255,107,157,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(93,217,163,0.06) 0%, transparent 50%);
+    animation: shimmer 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-2%, -1%); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-logo {
+    width: min(320px, 70vw);
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 12px rgba(199,125,255,0.2));
+    animation: floatLogo 4s ease-in-out infinite;
+  }
+
+  @keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero-catchcopy {
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-bears {
+    width: min(520px, 90vw);
+    filter: drop-shadow(0 8px 24px rgba(199,125,255,0.15));
+    animation: floatBears 5s ease-in-out infinite;
+  }
+
+  @keyframes floatBears {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-6px) rotate(0.5deg); }
+    75% { transform: translateY(4px) rotate(-0.5deg); }
+  }
+
+  /* ========== 星キラキラ装飾 ========== */
+  .sparkle {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    animation: sparkleAnim 3s ease-in-out infinite;
+  }
+
+  .sparkle::before, .sparkle::after {
+    content: '';
+    position: absolute;
+    background: var(--yellow);
+    border-radius: 2px;
+  }
+
+  .sparkle::before {
+    width: 100%;
+    height: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .sparkle::after {
+    width: 3px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+  .sparkle:nth-child(2) { top: 25%; right: 12%; animation-delay: 0.8s; }
+  .sparkle:nth-child(3) { top: 60%; left: 8%; animation-delay: 1.6s; }
+  .sparkle:nth-child(4) { top: 70%; right: 15%; animation-delay: 0.4s; }
+  .sparkle:nth-child(5) { top: 40%; left: 20%; animation-delay: 2s; }
+  .sparkle:nth-child(6) { top: 80%; right: 25%; animation-delay: 1.2s; }
+
+  @keyframes sparkleAnim {
+    0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    50% { opacity: 0.7; transform: scale(1) rotate(45deg); }
+  }
+
+  /* ========== コンテンツセクション ========== */
+  .contents-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-title-sub {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-light), var(--pink-light));
+    border-radius: 3px;
+    margin: 12px auto 0;
+  }
+
+  /* ========== コンテンツカード ========== */
+  .content-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+  }
+
+  .content-card {
+    background: var(--card);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 4px 20px rgba(199,125,255,0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: translateY(30px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 36px rgba(199,125,255,0.2);
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .content-card:hover .card-image-wrapper img {
+    transform: scale(1.08);
+  }
+
+  .card-image-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-image-bg.bg-pink { background: linear-gradient(135deg, var(--pink-pale), #ffe8f0); }
+  .card-image-bg.bg-purple { background: linear-gradient(135deg, var(--purple-pale), #ede0ff); }
+  .card-image-bg.bg-mint { background: linear-gradient(135deg, var(--mint-pale), #d4f7e8); }
+
+  .card-image-bg img {
+    width: 65%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+    transition: transform 0.5s;
+  }
+
+  .content-card:hover .card-image-bg img {
+    transform: scale(1.1) rotate(-2deg);
+  }
+
+  .card-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    width: fit-content;
+  }
+
+  .label-pink { background: var(--pink-pale); color: var(--pink); }
+  .label-purple { background: var(--purple-pale); color: var(--purple); }
+  .label-mint { background: var(--mint-pale); color: var(--mint); }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .card-arrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--purple);
+    transition: gap 0.3s;
+  }
+
+  .content-card:hover .card-arrow {
+    gap: 10px;
+  }
+
+  .card-arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--purple-pale);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    transition: background 0.3s;
+  }
+
+  .content-card:hover .card-arrow-icon {
+    background: var(--purple);
+    color: white;
+  }
+
+  /* ========== フッター ========== */
+  .footer {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--purple-pale) 100%);
+    text-align: center;
+    padding: 40px 20px 32px;
+    border-top: 2px solid var(--purple-light);
+  }
+
+  .footer-bears {
+    width: min(200px, 50vw);
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: var(--purple);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  /* ========== レスポンシブ ========== */
+  @media (max-width: 640px) {
+    .header-inner {
+      padding: 8px 12px;
+    }
+
+    .header-logo {
+      height: 36px;
+    }
+
+    .header-nav a {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+    }
+
+    .hero {
+      padding: 32px 16px 24px;
+    }
+
+    .content-cards {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .contents-section {
+      padding: 32px 16px 48px;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .content-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ========== 波型セクション区切り ========== */
+  .wave-divider {
+    width: 100%;
+    line-height: 0;
+    margin-top: -1px;
+  }
+
+  .wave-divider svg {
+    width: 100%;
+    height: 40px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html"><img src="assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="header-logo"></a>
+    <nav class="header-nav">
+      <a href="https://shindan.yonde-web.com/" target="_blank">しんだん</a>
+      <a href="manga/index.html">マンガ</a>
+      <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+
+  <div class="hero-content">
+    <img src="assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="hero-logo">
+    <p class="hero-catchcopy">くまたちといっしょに、もっとたのしもう！</p>
+    <img src="assets/yumeiro_bears.png" alt="ゆめいろべあーずのくまたち" class="hero-bears">
+  </div>
+</section>
+
+<!-- 波型区切り -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+    <path d="M0,20 C240,40 480,0 720,20 C960,40 1200,0 1440,20 L1440,40 L0,40 Z" fill="var(--bg)"/>
+  </svg>
+</div>
+
+<!-- コンテンツ一覧 -->
+<section class="contents-section">
+  <div class="section-title">
+    <h2>コンテンツ</h2>
+    <p class="section-title-sub">くまたちの世界をのぞいてみよう</p>
+  </div>
+
+  <div class="content-cards">
+
+    <!-- せいかくしんだん -->
+    <a href="https://shindan.yonde-web.com/" target="_blank" class="content-card">
+      <div class="card-image-wrapper">
+        <div class="card-image-bg bg-pink">
+          <img src="assets/yumeirobear_infp.png" alt="せいかくしんだん">
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-label label-pink">あそぶ</span>
+        <h3 class="card-title">せいかくしんだん</h3>
+        <p class="card-desc">12のしつもんにこたえて、きみにぴったりのくまをみつけよう！ぜんぶで16タイプ！</p>
+        <div class="card-arrow">
+          <span class="card-arrow-icon">▶</span>
+          しんだんする
+        </div>
+      </div>
+    </a>
+
+    <!-- マンガ -->
+    <a href="manga/index.html" class="content-card">
+      <div class="card-image-wrapper">
+        <div class="card-image-bg bg-purple">
+          <img src="manga-image/YB_istj_infp/YB_istj_infp-01.png" alt="マンガ">
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-label label-purple">よむ</span>
+        <h3 class="card-title">マンガ</h3>
+        <p class="card-desc">くまたちの日常をのぞいてみよう。あるある4コマまんがをおとどけ！</p>
+        <div class="card-arrow">
+          <span class="card-arrow-icon">▶</span>
+          よみにいく
+        </div>
+      </div>
+    </a>
+
+    <!-- ショップ -->
+    <a href="https://suzuri.jp/YONDE" target="_blank" class="content-card">
+      <div class="card-image-wrapper">
+        <div class="card-image-bg bg-mint">
+          <img src="assets/yumeirobear_esfp.png" alt="ショップ">
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-label label-mint">かう</span>
+        <h3 class="card-title">ショップ</h3>
+        <p class="card-desc">くまたちのかわいいグッズがいっぱい！おきにいりをみつけてね。</p>
+        <div class="card-arrow">
+          <span class="card-arrow-icon">▶</span>
+          ショップへ
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+  <img src="assets/yumeiro_bears.png" alt="" class="footer-bears">
+  <div class="footer-links">
+    <a href="https://shindan.yonde-web.com/" target="_blank">せいかくしんだん</a>
+    <a href="manga/">マンガ</a>
+    <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
+  </div>
+  <p class="footer-copy">&copy; YONDE</p>
+</footer>
+
+<script>
+  // フェードインアニメーション
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.content-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.12}s`;
+    observer.observe(card);
+  });
+</script>
+
+</body>
+</html>
