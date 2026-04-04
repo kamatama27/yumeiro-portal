@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TCK4GZRR2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3TCK4GZRR2');
+</script>
+<title>マンガ | ゆめいろべあーず</title>
+<meta name="description" content="ゆめいろべあーずのくまたちが登場する4コマまんが。MBTIタイプ同士のあるあるを楽しもう！">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>">
+<link rel="canonical" href="https://yumeiro.yonde-web.com/manga/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="マンガ | ゆめいろべあーず">
+<meta property="og:description" content="ゆめいろべあーずのくまたちが登場する4コマまんが。MBTIタイプ同士のあるあるを楽しもう！">
+<meta property="og:image" content="https://yumeiro.yonde-web.com/manga-image/YB_istj_infp/YB_istj_infp-01.png">
+<meta property="og:url" content="https://yumeiro.yonde-web.com/manga/">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap');
+
+  :root {
+    --pink: #ff6b9d;
+    --pink-light: #ffa2c4;
+    --pink-pale: #fff0f5;
+    --purple: #c77dff;
+    --purple-light: #e0aaff;
+    --purple-pale: #f3e8ff;
+    --mint: #5dd9a3;
+    --mint-light: #a8f0d0;
+    --mint-pale: #e8fdf4;
+    --yellow: #ffe66d;
+    --blue: #74c0fc;
+    --card: #ffffff;
+    --text: #5a4a6a;
+    --text-light: #9a8aaa;
+    --bg: #faf6ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Zen Maru Gothic', 'Hiragino Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ========== ヘッダー ========== */
+  .header {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--purple-light);
+  }
+
+  .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    height: 44px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .header-logo:hover {
+    transform: scale(1.05);
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .header-nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  .header-nav a:hover,
+  .header-nav a.active {
+    background: var(--purple-pale);
+    color: var(--purple);
+  }
+
+  /* ========== ページタイトル ========== */
+  .page-hero {
+    background: linear-gradient(170deg, var(--purple-pale) 0%, var(--pink-pale) 50%, var(--bg) 100%);
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .page-hero p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 700;
+  }
+
+  /* ========== マンガ一覧（リストビュー） ========== */
+  .manga-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 64px;
+  }
+
+  .manga-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .manga-card {
+    background: var(--card);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(199,125,255,0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .manga-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .manga-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(199,125,255,0.2);
+  }
+
+  .manga-card-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--purple-pale);
+  }
+
+  .manga-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+
+  .manga-card:hover .manga-card-thumb img {
+    transform: scale(1.06);
+  }
+
+  .manga-card-info {
+    padding: 16px;
+  }
+
+  .manga-card-episode {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--purple);
+    background: var(--purple-pale);
+    padding: 2px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .manga-card-title {
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.4;
+  }
+
+  .manga-card-characters {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* ========== マンガリーダー（縦並び） ========== */
+  .manga-reader {
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px 64px;
+  }
+
+  .manga-reader.active {
+    display: block;
+  }
+
+  .reader-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--purple-pale);
+  }
+
+  .reader-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+
+  .reader-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    background: var(--purple-pale);
+    color: var(--purple);
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .reader-back-btn:hover {
+    background: var(--purple);
+    color: white;
+  }
+
+  .reader-pages {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .reader-page {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(199,125,255,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .reader-page.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reader-end {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .reader-end p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* ========== フッター ========== */
+  .footer {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--purple-pale) 100%);
+    text-align: center;
+    padding: 40px 20px 32px;
+    border-top: 2px solid var(--purple-light);
+  }
+
+  .footer-bears {
+    width: min(200px, 50vw);
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover {
+    color: var(--purple);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  /* ========== レスポンシブ ========== */
+  @media (max-width: 640px) {
+    .header-inner { padding: 8px 12px; }
+    .header-logo { height: 36px; }
+    .header-nav a { font-size: 0.75rem; padding: 5px 10px; }
+    .manga-list { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+    .manga-section { padding: 24px 16px 48px; }
+    .page-hero { padding: 28px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+  <div class="header-inner">
+    <a href="../index.html"><img src="../assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="header-logo"></a>
+    <nav class="header-nav">
+      <a href="https://shindan.yonde-web.com/" target="_blank">しんだん</a>
+      <a href="index.html" class="active">マンガ</a>
+      <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ページタイトル -->
+<section class="page-hero" id="page-hero">
+  <h1>マンガ</h1>
+  <p>くまたちの あるある4コマまんが</p>
+</section>
+
+<!-- マンガ一覧 -->
+<section class="manga-section" id="manga-list-section">
+  <div class="manga-list" id="manga-list">
+    <!-- エピソードカードはJSで生成 -->
+  </div>
+</section>
+
+<!-- マンガリーダー -->
+<section class="manga-reader" id="manga-reader">
+  <div class="reader-header">
+    <h2 class="reader-title" id="reader-title"></h2>
+    <button class="reader-back-btn" onclick="closeReader()">← もどる</button>
+  </div>
+  <div class="reader-pages" id="reader-pages">
+    <!-- ページ画像はJSで生成 -->
+  </div>
+  <div class="reader-end">
+    <p>おしまい！</p>
+    <button class="reader-back-btn" onclick="closeReader()">← いちらんにもどる</button>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+  <img src="../assets/yumeiro_bears.png" alt="" class="footer-bears">
+  <div class="footer-links">
+    <a href="../index.html">トップ</a>
+    <a href="https://shindan.yonde-web.com/" target="_blank">せいかくしんだん</a>
+    <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
+  </div>
+  <p class="footer-copy">&copy; YONDE</p>
+</footer>
+
+<script>
+  // ============================================================
+  // マンガデータ
+  // 新しいエピソードを追加するには、このリストに追加するだけでOK
+  // ============================================================
+  const mangaEpisodes = [
+    {
+      id: 'YB_istj_infp',
+      title: '雲のみえかた',
+      characters: 'ミミ（ISTJ）× スノウ（INFP）',
+      folder: '../manga-image/YB_istj_infp',
+      pages: [
+        'YB_istj_infp-01.png',
+        'YB_istj_infp-02.png',
+        'YB_istj_infp-03.png'
+      ]
+    }
+    // ── 新エピソード追加例 ──
+    // {
+    //   id: 'YB_entj_esfp',
+    //   title: 'エピソードタイトル',
+    //   characters: 'キャラA（ENTJ）× キャラB（ESFP）',
+    //   folder: '../manga-image/YB_entj_esfp',
+    //   pages: [
+    //     'YB_entj_esfp-01.png',
+    //     'YB_entj_esfp-02.png',
+    //     'YB_entj_esfp-03.png'
+    //   ]
+    // }
+  ];
+
+  // ============================================================
+  // 一覧表示
+  // ============================================================
+  const listEl = document.getElementById('manga-list');
+
+  mangaEpisodes.forEach((ep, idx) => {
+    const card = document.createElement('div');
+    card.className = 'manga-card';
+    card.style.transitionDelay = `${idx * 0.1}s`;
+    card.innerHTML = `
+      <div class="manga-card-thumb">
+        <img src="${ep.folder}/${ep.pages[0]}" alt="${ep.title}" loading="lazy">
+      </div>
+      <div class="manga-card-info">
+        <span class="manga-card-episode">第${idx + 1}話</span>
+        <h3 class="manga-card-title">${ep.title}</h3>
+        <p class="manga-card-characters">${ep.characters}</p>
+      </div>
+    `;
+    card.addEventListener('click', () => openReader(ep));
+    listEl.appendChild(card);
+  });
+
+  // ============================================================
+  // フェードインアニメーション（一覧カード）
+  // ============================================================
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.manga-card').forEach(c => cardObserver.observe(c));
+
+  // ============================================================
+  // リーダー表示
+  // ============================================================
+  const listSection = document.getElementById('manga-list-section');
+  const readerSection = document.getElementById('manga-reader');
+  const readerTitle = document.getElementById('reader-title');
+  const readerPages = document.getElementById('reader-pages');
+  const pageHero = document.getElementById('page-hero');
+
+  function openReader(episode) {
+    readerTitle.textContent = episode.title;
+    readerPages.innerHTML = '';
+
+    episode.pages.forEach((page, i) => {
+      const img = document.createElement('img');
+      img.className = 'reader-page';
+      img.src = `${episode.folder}/${page}`;
+      img.alt = `${episode.title} - ${i + 1}ページ`;
+      img.loading = 'lazy';
+      img.style.transitionDelay = `${i * 0.15}s`;
+      readerPages.appendChild(img);
+    });
+
+    listSection.style.display = 'none';
+    pageHero.style.display = 'none';
+    readerSection.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // リーダーページのフェードイン
+    const pageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          pageObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.reader-page').forEach(p => pageObserver.observe(p));
+  }
+
+  function closeReader() {
+    readerSection.classList.remove('active');
+    listSection.style.display = '';
+    pageHero.style.display = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // URLハッシュで直接マンガを開く
+  if (window.location.hash) {
+    const epId = window.location.hash.slice(1);
+    const ep = mangaEpisodes.find(e => e.id === epId);
+    if (ep) openReader(ep);
+  }
+</script>
+
+</body>
+</html>
