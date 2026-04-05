@@ -13,15 +13,15 @@
   gtag('config', 'G-3TCK4GZRR2');
 </script>
 <title>ゆめいろべあーず | ポータルサイト</title>
-<meta name="description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、くまたちのコンテンツが盛りだくさん！">
-<meta name="keywords" content="ゆめいろべあーず,性格診断,マンガ,くま,キャラクター,ポータル">
+<meta name="description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、べあーずのコンテンツが盛りだくさん！">
+<meta name="keywords" content="ゆめいろべあーず,性格診断,マンガ,べあーず,キャラクター,ポータル">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>">
 <link rel="canonical" href="https://yumeiro.yonde-web.com/">
 
 <!-- OGP -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="ゆめいろべあーず | ポータルサイト">
-<meta property="og:description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、くまたちのコンテンツが盛りだくさん！">
+<meta property="og:description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、べあーずのコンテンツが盛りだくさん！">
 <meta property="og:image" content="https://yumeiro.yonde-web.com/assets/yumeiro_logo.png">
 <meta property="og:url" content="https://yumeiro.yonde-web.com/">
 <meta name="twitter:card" content="summary_large_image">
@@ -114,9 +114,13 @@
   /* ========== ヒーローセクション ========== */
   .hero {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 520px;
     background: linear-gradient(170deg, var(--purple-pale) 0%, var(--pink-pale) 40%, var(--blue-pale) 70%, var(--mint-pale) 100%);
     text-align: center;
-    padding: 48px 20px 32px;
+    padding: 20px;
     overflow: hidden;
   }
 
@@ -140,9 +144,8 @@
 
   .hero-content {
     position: relative;
-    z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
+    z-index: 2;
+    max-width: 400px;
   }
 
   .hero-logo {
@@ -165,16 +168,83 @@
     letter-spacing: 0.05em;
   }
 
-  .hero-bears {
-    width: min(520px, 90vw);
-    filter: drop-shadow(0 8px 24px rgba(199,125,255,0.15));
-    animation: floatBears 5s ease-in-out infinite;
+  /* ========== べあーず集合アニメーション ========== */
+  .hero-bears-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, transform 0.15s;
+    will-change: opacity, transform;
   }
 
-  @keyframes floatBears {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-6px) rotate(0.5deg); }
-    75% { transform: translateY(4px) rotate(-0.5deg); }
+  .hero-bear {
+    position: absolute;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 8px rgba(199,125,255,0.25));
+    opacity: 0;
+  }
+
+  @keyframes gatherIn {
+    0% {
+      opacity: 0;
+      transform: translate(var(--fx, 0px), var(--fy, 0px)) rotate(var(--rotation, 0deg)) scale(0.15);
+    }
+    65% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate(0, 0) rotate(var(--rotation, 0deg)) scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(var(--rotation, 0deg)) scale(1);
+    }
+  }
+
+  /* ========== スクロールインジケーター ========== */
+  .scroll-indicator {
+    position: absolute;
+    right: 20px;
+    bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    transition: opacity 0.15s;
+  }
+
+  .scroll-text {
+    writing-mode: vertical-rl;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.12em;
+  }
+
+  .scroll-line {
+    width: 1.5px;
+    height: 36px;
+    background: var(--purple-light);
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--purple);
+    animation: scrollFlow 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollFlow {
+    0% { top: -100%; }
+    100% { top: 100%; }
   }
 
   /* ========== 星キラキラ装飾 ========== */
@@ -452,7 +522,13 @@
     }
 
     .hero {
-      padding: 32px 16px 24px;
+      min-height: 360px;
+      padding: 16px;
+    }
+
+    .scroll-indicator {
+      right: 10px;
+      bottom: 16px;
     }
 
     .content-cards {
@@ -508,10 +584,34 @@
   <div class="sparkle"></div>
   <div class="sparkle"></div>
 
+  <!-- べあーずコンテナは .hero の直接の子にする（position:absolute の基準が .hero になるよう） -->
+  <div class="hero-bears-container" id="hero-bears">
+    <img src="yumeiro_jissya/ENFP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ISTJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/INFP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ENTJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ISTP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ENFJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ESTP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/INFJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ESFP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/INTJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ISFJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ENTP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ESTJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ISFP.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/ESFJ.png" alt="" class="hero-bear">
+    <img src="yumeiro_jissya/INTP.png" alt="" class="hero-bear">
+  </div>
+
   <div class="hero-content">
     <img src="assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="hero-logo">
-    <p class="hero-catchcopy">くまたちといっしょに、もっとたのしもう！</p>
-    <img src="assets/yumeiro_bears.png" alt="ゆめいろべあーずのくまたち" class="hero-bears">
+    <p class="hero-catchcopy">べあーずといっしょに、もっとたのしもう！</p>
+  </div>
+
+  <div class="scroll-indicator" id="scroll-indicator">
+    <span class="scroll-text">スクロールしてね</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
@@ -526,7 +626,7 @@
 <section class="contents-section">
   <div class="section-title">
     <h2>コンテンツ</h2>
-    <p class="section-title-sub">くまたちの世界をのぞいてみよう</p>
+    <p class="section-title-sub">べあーずの世界をのぞいてみよう</p>
   </div>
 
   <div class="content-cards">
@@ -541,7 +641,7 @@
       <div class="card-body">
         <span class="card-label label-pink">あそぶ</span>
         <h3 class="card-title">せいかくしんだん</h3>
-        <p class="card-desc">12のしつもんにこたえて、きみにぴったりのくまをみつけよう！ぜんぶで16タイプ！</p>
+        <p class="card-desc">12のしつもんにこたえて、きみにぴったりのべあーずをみつけよう！ぜんぶで16タイプ！</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
           しんだんする
@@ -559,7 +659,7 @@
       <div class="card-body">
         <span class="card-label label-purple">よむ</span>
         <h3 class="card-title">マンガ</h3>
-        <p class="card-desc">くまたちの日常をのぞいてみよう。あるある4コマまんがをおとどけ！</p>
+        <p class="card-desc">べあーずの日常をのぞいてみよう。あるある4コマまんがをおとどけ！</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
           よみにいく
@@ -577,7 +677,7 @@
       <div class="card-body">
         <span class="card-label label-mint">かう</span>
         <h3 class="card-title">ショップ</h3>
-        <p class="card-desc">くまたちのかわいいグッズがいっぱい！おきにいりをみつけてね。</p>
+        <p class="card-desc">べあーずのかわいいグッズがいっぱい！おきにいりをみつけてね。</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
           ショップへ
@@ -600,7 +700,99 @@
 </footer>
 
 <script>
-  // フェードインアニメーション
+  // ========== べあーず円形配置 ==========
+  function setupBears() {
+    const hero = document.querySelector('.hero');
+    const container = document.getElementById('hero-bears');
+    if (!container || !hero) return;
+
+    const bears = Array.from(container.querySelectorAll('.hero-bear'));
+
+    // offsetWidth/Height はアニメーション・スクロールに影響されない純粋なレイアウトサイズ
+    const W = hero.offsetWidth;
+    const H = hero.offsetHeight;
+
+    // べあーずのサイズ（画面幅に応じて調整）
+    const bearSize = W > 900 ? 143 : W > 640 ? 120 : 87;
+
+    // 楕円の中心 = ヒーローセクションの中央（flexで hero-content がここに配置される）
+    const cx = W / 2;
+    const cy = H / 2;
+
+    // 楕円の半径
+    const rx = Math.min(W * 0.46, 430);
+    const ry = Math.min(H * 0.44, 225);
+
+    // 配置する弧の範囲: 下左(-225°) → 上(-90°) → 下右(45°)
+    // ※角度はCSS座標系(右=0°, 下=90°)
+    const startAngle = -225;
+    const endAngle = 45;
+    const n = bears.length;
+
+    bears.forEach((bear, i) => {
+      const t = n > 1 ? i / (n - 1) : 0.5;
+      const angleDeg = startAngle + t * (endAngle - startAngle);
+      const angleRad = angleDeg * Math.PI / 180;
+
+      // 弧上の位置
+      const bx = cx + rx * Math.cos(angleRad);
+      const by = cy + ry * Math.sin(angleRad);
+
+      bear.style.width = bearSize + 'px';
+      bear.style.height = bearSize + 'px';
+      bear.style.left = (bx - bearSize / 2) + 'px';
+      bear.style.top = (by - bearSize / 2) + 'px';
+
+      // 頭が中心を向くよう回転角を計算
+      // rotate(atan2(dx, -dy)) で「上」が中心方向を向く
+      const dx = cx - bx;
+      const dy = cy - by;
+      const rotDeg = Math.atan2(dx, -dy) * 180 / Math.PI;
+
+      // アニメーション開始位置: 弧の外側からロゴ中心方向へ飛び込んでくる
+      const outFactor = 1.8;
+      const fxPx = (bx - cx) * outFactor;
+      const fyPx = (by - cy) * outFactor;
+
+      bear.style.setProperty('--rotation', rotDeg.toFixed(1) + 'deg');
+      bear.style.setProperty('--fx', fxPx.toFixed(0) + 'px');
+      bear.style.setProperty('--fy', fyPx.toFixed(0) + 'px');
+
+      // アニメーション設定（遅延付き）
+      bear.style.animation = 'none';
+      // reflow を挟んでアニメーションをリセット
+      bear.offsetHeight; // eslint-disable-line
+      bear.style.animation = `gatherIn 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) ${(i * 0.04).toFixed(2)}s forwards`;
+    });
+  }
+
+  // 画像ロード完了後に初期化（ロゴ画像のサイズが確定してから中心座標を計算するため）
+  window.addEventListener('load', () => {
+    setupBears();
+
+    // リサイズ時に再配置
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(setupBears, 150);
+    });
+  });
+
+  // ========== スクロールでべあーずフェードアウト ==========
+  const heroBears = document.getElementById('hero-bears');
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  const hero = document.querySelector('.hero');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const heroH = hero.offsetHeight;
+    const p = Math.min(scrollY / (heroH * 0.5), 1);
+    heroBears.style.opacity = 1 - p;
+    heroBears.style.transform = `scale(${1 - p * 0.3}) translateY(${-p * 40}px)`;
+    scrollIndicator.style.opacity = 1 - p * 3;
+  });
+
+  // ========== コンテンツカードフェードイン ==========
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
