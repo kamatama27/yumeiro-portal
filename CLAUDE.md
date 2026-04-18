@@ -22,10 +22,12 @@ manga-image/            - マンガ画像
     YB_istj_infp-02.png - 4コマ本編
     YB_istj_infp-03.png - キャラ解説
 assets/                 - 共通アセット
-  yumeiro_logo.png      - サイトロゴ
+  YB_logo2.png          - サイトロゴ
+  YB_webpic-01.png      - せいかくしんだんカード画像
+  YB_webpic-02.png      - マンガカード画像
+  YB_webpic-03.png      - ショップカード画像
   yumeiro_bears.png     - くまたち集合画像
   yumeiro_back.png      - 背景画像
-  yumeirobear_*.png     - 個別くまキャラ画像
 robots.txt              - クロール指示
 sitemap.xml             - サイトマップ
 ```

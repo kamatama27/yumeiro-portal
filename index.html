@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="ゆめいろべあーず | ポータルサイト">
 <meta property="og:description" content="ゆめいろべあーずの公式ポータルサイト。せいかくしんだん、マンガ、グッズなど、べあーずのコンテンツが盛りだくさん！">
-<meta property="og:image" content="https://yumeiro.yonde-web.com/assets/yumeiro_logo.png">
+<meta property="og:image" content="https://yumeiro.yonde-web.com/assets/YB_logo2.png">
 <meta property="og:url" content="https://yumeiro.yonde-web.com/">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -145,11 +145,11 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 400px;
+    max-width: min(620px, 92vw);
   }
 
   .hero-logo {
-    width: min(320px, 70vw);
+    width: min(540px, 88vw);
     margin-bottom: 16px;
     filter: drop-shadow(0 4px 12px rgba(199,125,255,0.2));
     animation: floatLogo 4s ease-in-out infinite;
@@ -420,9 +420,9 @@
   .card-image-bg.bg-mint { background: linear-gradient(135deg, var(--mint-pale), #d4f7e8); }
 
   .card-image-bg img {
-    width: 65%;
-    height: auto;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
     transition: transform 0.5s;
   }
@@ -597,7 +597,7 @@
 <!-- ヘッダー -->
 <header class="header">
   <div class="header-inner">
-    <a href="index.html"><img src="assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="header-logo"></a>
+    <a href="index.html"><img src="assets/YB_logo2.png" alt="ゆめいろべあーず" class="header-logo"></a>
     <nav class="header-nav">
       <a href="https://shindan.yonde-web.com/" target="_blank">しんだん</a>
       <a href="manga/index.html">マンガ</a>
@@ -636,7 +636,7 @@
   </div>
 
   <div class="hero-content">
-    <img src="assets/yumeiro_logo.png" alt="ゆめいろべあーず" class="hero-logo">
+    <img src="assets/YB_logo2.png" alt="ゆめいろべあーず" class="hero-logo">
     <p class="hero-catchcopy">べあーずといっしょに、もっとたのしもう！</p>
   </div>
 
@@ -666,7 +666,7 @@
     <a href="https://shindan.yonde-web.com/" target="_blank" class="content-card">
       <div class="card-image-wrapper">
         <div class="card-image-bg bg-pink">
-          <img src="assets/yumeirobear_infp.png" alt="せいかくしんだん">
+          <img src="assets/YB_webpic-01.png" alt="せいかくしんだん">
         </div>
       </div>
       <div class="card-body">
@@ -684,7 +684,7 @@
     <a href="manga/index.html" class="content-card">
       <div class="card-image-wrapper">
         <div class="card-image-bg bg-purple">
-          <img src="manga-image/YB_istj_infp/YB_istj_infp-01.png" alt="マンガ">
+          <img src="assets/YB_webpic-02.png" alt="マンガ">
         </div>
       </div>
       <div class="card-body">
@@ -702,7 +702,7 @@
     <a href="https://suzuri.jp/YONDE" target="_blank" class="content-card">
       <div class="card-image-wrapper">
         <div class="card-image-bg bg-mint">
-          <img src="assets/yumeirobear_esfp.png" alt="ショップ">
+          <img src="assets/YB_webpic-03.png" alt="ショップ">
         </div>
       </div>
       <div class="card-body">
