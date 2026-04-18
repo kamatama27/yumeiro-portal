@@ -90,6 +90,7 @@
   .header-nav {
     display: flex;
     gap: 8px;
+    flex-wrap: nowrap;
   }
 
   .header-nav a {
@@ -100,6 +101,7 @@
     padding: 6px 16px;
     border-radius: 20px;
     transition: all 0.3s;
+    white-space: nowrap;
   }
 
   .header-nav a:hover,
@@ -347,9 +349,10 @@
 
   /* ========== レスポンシブ ========== */
   @media (max-width: 640px) {
-    .header-inner { padding: 8px 12px; }
-    .header-logo { height: 36px; }
-    .header-nav a { font-size: 0.75rem; padding: 5px 10px; }
+    .header-inner { padding: 8px 12px; gap: 8px; }
+    .header-logo { height: 30px; }
+    .header-nav { gap: 4px; }
+    .header-nav a { font-size: 0.7rem; padding: 5px 8px; }
     .manga-list { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
     .manga-section { padding: 24px 16px 48px; }
     .page-hero { padding: 28px 16px; }

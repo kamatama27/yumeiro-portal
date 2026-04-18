@@ -93,6 +93,7 @@
   .header-nav {
     display: flex;
     gap: 8px;
+    flex-wrap: nowrap;
   }
 
   .header-nav a {
@@ -104,6 +105,7 @@
     border-radius: 20px;
     transition: all 0.3s;
     background: transparent;
+    white-space: nowrap;
   }
 
   .header-nav a:hover {
@@ -541,15 +543,20 @@
   @media (max-width: 640px) {
     .header-inner {
       padding: 8px 12px;
+      gap: 8px;
     }
 
     .header-logo {
-      height: 36px;
+      height: 30px;
+    }
+
+    .header-nav {
+      gap: 4px;
     }
 
     .header-nav a {
-      font-size: 0.75rem;
-      padding: 5px 10px;
+      font-size: 0.7rem;
+      padding: 5px 8px;
     }
 
     .hero {
