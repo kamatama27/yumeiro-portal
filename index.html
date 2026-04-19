@@ -738,6 +738,8 @@
 </footer>
 
 <script>
+  let heroBearsHasEntered = false;
+
   function prepareHeroBears(container) {
     if (!container || container.dataset.prepared === 'true') return;
 
@@ -751,6 +753,34 @@
     });
 
     container.dataset.prepared = 'true';
+  }
+
+  function setBearsStartState(bears) {
+    bears.forEach((bear) => {
+      const bearImage = bear.querySelector('.hero-bear-image');
+      bear.style.animation = 'none';
+      bear.style.opacity = '0';
+      bear.style.transform = 'translate(var(--fx, 0px), var(--fy, 0px)) rotate(var(--rotation, 0deg))';
+
+      if (bearImage) {
+        bearImage.style.animation = 'none';
+        bearImage.style.transform = 'scale(0.12)';
+      }
+    });
+  }
+
+  function setBearsFinalState(bears) {
+    bears.forEach((bear) => {
+      const bearImage = bear.querySelector('.hero-bear-image');
+      bear.style.animation = 'none';
+      bear.style.opacity = '1';
+      bear.style.transform = 'translate(0, 0) rotate(var(--rotation, 0deg))';
+
+      if (bearImage) {
+        bearImage.style.animation = 'none';
+        bearImage.style.transform = 'translate(0, 0) rotate(0deg) scale(1)';
+      }
+    });
   }
 
   // ========== べあーず円形配置 ==========
@@ -862,11 +892,18 @@
       bear.style.animation = 'gatherInBurst 1.28s cubic-bezier(0.22, 1, 0.36, 1) forwards';
       if (bearImage) bearImage.style.animation = 'bearPopStep 1.28s cubic-bezier(0.22, 1, 0.36, 1) forwards';
     });
+
+    if (heroBearsHasEntered) {
+      setBearsFinalState(bears);
+    } else {
+      setBearsStartState(bears);
+    }
   }
 
   // 画像ロード完了後に初期化（ロゴ画像のサイズが確定してから中心座標を計算するため）
   window.addEventListener('load', () => {
     setupBears();
+    playBearsEntrance();
 
     // リサイズ時に再配置
     let resizeTimer;
@@ -877,6 +914,33 @@
   });
 
   // ========== スクロールでべあーずフェードアウト ==========
+  function playBearsEntrance() {
+    if (heroBearsHasEntered || document.visibilityState !== 'visible') return;
+
+    const container = document.getElementById('hero-bears');
+    if (!container) return;
+
+    const bears = Array.from(container.querySelectorAll('.hero-bear'));
+    if (!bears.length) return;
+
+    heroBearsHasEntered = true;
+    setBearsStartState(bears);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bears.forEach((bear) => {
+          const bearImage = bear.querySelector('.hero-bear-image');
+          bear.style.animation = 'gatherInBurst 1.28s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+          if (bearImage) bearImage.style.animation = 'bearPopStep 1.28s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+        });
+      });
+    });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    playBearsEntrance();
+  });
+
   const heroBears = document.getElementById('hero-bears');
   const scrollIndicator = document.getElementById('scroll-indicator');
   const hero = document.querySelector('.hero');
