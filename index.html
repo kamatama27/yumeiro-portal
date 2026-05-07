@@ -60,6 +60,24 @@
     overflow-x: hidden;
   }
 
+  ruby {
+    ruby-align: center;
+  }
+
+  rt {
+    font-size: 0.48em;
+    line-height: 1;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
+  .header-nav rt,
+  .footer-links rt,
+  .card-label rt,
+  .card-arrow rt {
+    font-size: 0.42em;
+  }
+
   /* ========== ヘッダー ========== */
   .header {
     background: rgba(255,255,255,0.85);
@@ -106,6 +124,7 @@
     transition: all 0.3s;
     background: transparent;
     white-space: nowrap;
+    line-height: 1.25;
   }
 
   .header-nav a:hover {
@@ -528,6 +547,7 @@
     font-size: 0.8rem;
     font-weight: 700;
     transition: color 0.3s;
+    line-height: 1.3;
   }
 
   .footer-links a:hover {
@@ -606,8 +626,8 @@
   <div class="header-inner">
     <a href="index.html"><img src="assets/YB_logo2.png" alt="ゆめいろべあーず" class="header-logo"></a>
     <nav class="header-nav">
-      <a href="https://shindan.yonde-web.com/" target="_blank">しんだん</a>
-      <a href="manga/index.html">マンガ</a>
+      <a href="https://shindan.yonde-web.com/" target="_blank"><ruby>診断<rt>しんだん</rt></ruby></a>
+      <a href="manga/index.html"><ruby>漫画<rt>まんが</rt></ruby></a>
       <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
     </nav>
   </div>
@@ -644,7 +664,7 @@
 
   <div class="hero-content">
     <img src="assets/YB_logo2.png" alt="ゆめいろべあーず" class="hero-logo">
-    <p class="hero-catchcopy">べあーずといっしょに、もっとたのしもう！</p>
+    <p class="hero-catchcopy">べあーずと いっしょに、もっと <ruby>楽<rt>たの</rt></ruby>しもう！</p>
   </div>
 
   <div class="scroll-indicator" id="scroll-indicator">
@@ -664,7 +684,7 @@
 <section class="contents-section">
   <div class="section-title">
     <h2>コンテンツ</h2>
-    <p class="section-title-sub">べあーずの世界をのぞいてみよう</p>
+    <p class="section-title-sub">べあーずの <ruby>世界<rt>せかい</rt></ruby>を のぞいてみよう</p>
   </div>
 
   <div class="content-cards">
@@ -673,16 +693,16 @@
     <a href="https://shindan.yonde-web.com/" target="_blank" class="content-card">
       <div class="card-image-wrapper">
         <div class="card-image-bg bg-pink">
-          <img src="assets/YB_webpic-01.png" alt="せいかくしんだん">
+          <img src="assets/YB_webpic-01.png" alt="性格診断">
         </div>
       </div>
       <div class="card-body">
-        <span class="card-label label-pink">あそぶ</span>
-        <h3 class="card-title">せいかくしんだん</h3>
-        <p class="card-desc">12のしつもんにこたえて、きみにぴったりのべあーずをみつけよう！ぜんぶで16タイプ！</p>
+        <span class="card-label label-pink"><ruby>遊<rt>あそ</rt></ruby>ぶ</span>
+        <h3 class="card-title"><ruby>性格診断<rt>せいかくしんだん</rt></ruby></h3>
+        <p class="card-desc">12の <ruby>質問<rt>しつもん</rt></ruby>に <ruby>答<rt>こた</rt></ruby>えて、<ruby>君<rt>きみ</rt></ruby>に ぴったりの べあーずを みつけよう！ <ruby>全部<rt>ぜんぶ</rt></ruby>で 16タイプ！</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
-          しんだんする
+          <ruby>診断<rt>しんだん</rt></ruby>する
         </div>
       </div>
     </a>
@@ -691,16 +711,16 @@
     <a href="manga/index.html" class="content-card">
       <div class="card-image-wrapper">
         <div class="card-image-bg bg-purple">
-          <img src="assets/YB_webpic-02.png" alt="マンガ">
+          <img src="assets/YB_webpic-02.png" alt="漫画">
         </div>
       </div>
       <div class="card-body">
-        <span class="card-label label-purple">よむ</span>
-        <h3 class="card-title">マンガ</h3>
-        <p class="card-desc">べあーずの日常をのぞいてみよう。あるある4コマまんがをおとどけ！</p>
+        <span class="card-label label-purple"><ruby>読<rt>よ</rt></ruby>む</span>
+        <h3 class="card-title"><ruby>漫画<rt>まんが</rt></ruby></h3>
+        <p class="card-desc">べあーずの <ruby>日常<rt>にちじょう</rt></ruby>を のぞいてみよう。あるある4コマ<ruby>漫画<rt>まんが</rt></ruby>を おとどけ！</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
-          よみにいく
+          <ruby>読<rt>よ</rt></ruby>みにいく
         </div>
       </div>
     </a>
@@ -713,9 +733,9 @@
         </div>
       </div>
       <div class="card-body">
-        <span class="card-label label-mint">かう</span>
+        <span class="card-label label-mint"><ruby>買<rt>か</rt></ruby>う</span>
         <h3 class="card-title">ショップ</h3>
-        <p class="card-desc">べあーずのかわいいグッズがいっぱい！おきにいりをみつけてね。</p>
+        <p class="card-desc">べあーずの かわいい グッズが いっぱい！ お<ruby>気<rt>き</rt></ruby>に<ruby>入<rt>い</rt></ruby>りを みつけてね。</p>
         <div class="card-arrow">
           <span class="card-arrow-icon">▶</span>
           ショップへ
@@ -730,8 +750,8 @@
 <footer class="footer">
   <img src="assets/yumeiro_bears.png" alt="" class="footer-bears">
   <div class="footer-links">
-    <a href="https://shindan.yonde-web.com/" target="_blank">せいかくしんだん</a>
-    <a href="manga/">マンガ</a>
+    <a href="https://shindan.yonde-web.com/" target="_blank"><ruby>性格診断<rt>せいかくしんだん</rt></ruby></a>
+    <a href="manga/"><ruby>漫画<rt>まんが</rt></ruby></a>
     <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
   </div>
   <p class="footer-copy">&copy; YONDE</p>

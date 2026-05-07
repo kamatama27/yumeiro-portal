@@ -57,6 +57,25 @@
     overflow-x: hidden;
   }
 
+  ruby {
+    ruby-align: center;
+  }
+
+  rt {
+    font-size: 0.48em;
+    line-height: 1;
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+
+  .header-nav rt,
+  .footer-links rt,
+  .reader-back-btn rt,
+  .manga-card-episode rt,
+  .manga-card-new rt {
+    font-size: 0.42em;
+  }
+
   /* ========== ヘッダー ========== */
   .header {
     background: rgba(255,255,255,0.85);
@@ -102,6 +121,7 @@
     border-radius: 20px;
     transition: all 0.3s;
     white-space: nowrap;
+    line-height: 1.25;
   }
 
   .header-nav a:hover,
@@ -269,6 +289,7 @@
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
+    line-height: 1.3;
   }
 
   .reader-back-btn:hover {
@@ -336,6 +357,7 @@
     font-size: 0.8rem;
     font-weight: 700;
     transition: color 0.3s;
+    line-height: 1.3;
   }
 
   .footer-links a:hover {
@@ -366,8 +388,8 @@
   <div class="header-inner">
     <a href="../index.html"><img src="../assets/YB_logo2.png" alt="ゆめいろべあーず" class="header-logo"></a>
     <nav class="header-nav">
-      <a href="https://shindan.yonde-web.com/" target="_blank">しんだん</a>
-      <a href="index.html" class="active">マンガ</a>
+      <a href="https://shindan.yonde-web.com/" target="_blank"><ruby>診断<rt>しんだん</rt></ruby></a>
+      <a href="index.html" class="active"><ruby>漫画<rt>まんが</rt></ruby></a>
       <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
     </nav>
   </div>
@@ -375,8 +397,8 @@
 
 <!-- ページタイトル -->
 <section class="page-hero" id="page-hero">
-  <h1>マンガ</h1>
-  <p>べあーずの あるある4コマまんが</p>
+  <h1><ruby>漫画<rt>まんが</rt></ruby></h1>
+  <p>べあーずの あるある 4コマ<ruby>漫画<rt>まんが</rt></ruby></p>
 </section>
 
 <!-- マンガ一覧 -->
@@ -390,14 +412,14 @@
 <section class="manga-reader" id="manga-reader">
   <div class="reader-header">
     <h2 class="reader-title" id="reader-title"></h2>
-    <button class="reader-back-btn" onclick="closeReader()">← もどる</button>
+    <button class="reader-back-btn" onclick="closeReader()">← <ruby>戻<rt>もど</rt></ruby>る</button>
   </div>
   <div class="reader-pages" id="reader-pages">
     <!-- ページ画像はJSで生成 -->
   </div>
   <div class="reader-end">
     <p>おしまい！</p>
-    <button class="reader-back-btn" onclick="closeReader()">← いちらんにもどる</button>
+    <button class="reader-back-btn" onclick="closeReader()">← <ruby>一覧<rt>いちらん</rt></ruby>に <ruby>戻<rt>もど</rt></ruby>る</button>
   </div>
 </section>
 
@@ -406,13 +428,15 @@
   <img src="../assets/yumeiro_bears.png" alt="" class="footer-bears">
   <div class="footer-links">
     <a href="../index.html">トップ</a>
-    <a href="https://shindan.yonde-web.com/" target="_blank">せいかくしんだん</a>
+    <a href="https://shindan.yonde-web.com/" target="_blank"><ruby>性格診断<rt>せいかくしんだん</rt></ruby></a>
     <a href="https://suzuri.jp/YONDE" target="_blank">ショップ</a>
   </div>
   <p class="footer-copy">&copy; YONDE</p>
 </footer>
 
 <script>
+  const rb = (text, yomi) => `<ruby>${text}<rt>${yomi}</rt></ruby>`;
+
   // ============================================================
   // マンガデータ
   // 新しいエピソードを追加するには、このリストに追加するだけでOK
@@ -463,7 +487,7 @@
 
   mangaEpisodes.forEach((ep, idx) => {
     const episodeNumber = ep.episode ?? (idx + 1);
-    const newBadge = ep.isNew ? '<span class="manga-card-new">新作</span>' : '';
+    const newBadge = ep.isNew ? `<span class="manga-card-new">${rb('新作', 'しんさく')}</span>` : '';
     const card = document.createElement('div');
     card.className = 'manga-card';
     card.style.transitionDelay = `${idx * 0.1}s`;
@@ -473,7 +497,7 @@
       </div>
       <div class="manga-card-info">
         <div class="manga-card-meta">
-          <span class="manga-card-episode">第${episodeNumber}話</span>
+          <span class="manga-card-episode">第${episodeNumber}${rb('話', 'わ')}</span>
           ${newBadge}
         </div>
         <h3 class="manga-card-title">${ep.title}</h3>
