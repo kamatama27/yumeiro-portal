@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -465,6 +465,19 @@
         'YB_enfp_esfp-02.png',
         'YB_enfp_esfp-03.png'
       ]
+    },
+    {
+      id: 'YB_etsj',
+      episode: 3,
+      isNew: true,
+      title: 'うんどうかい',
+      characters: 'ルビー（ESTJ）',
+      folder: '../manga-image/YB_etsj',
+      pages: [
+        'YB_estj_web_1.png',
+        'YB_estj_web_2.png',
+        'YB_estj_web_3.png'
+      ]
     }
     // ── 新エピソード追加例 ──
     // {
@@ -484,10 +497,11 @@
   // 一覧表示
   // ============================================================
   const listEl = document.getElementById('manga-list');
+  const latestEpisode = Math.max(...mangaEpisodes.map((ep, idx) => ep.episode ?? (idx + 1)));
 
   mangaEpisodes.forEach((ep, idx) => {
     const episodeNumber = ep.episode ?? (idx + 1);
-    const newBadge = ep.isNew ? `<span class="manga-card-new">${rb('新作', 'しんさく')}</span>` : '';
+    const newBadge = episodeNumber === latestEpisode ? `<span class="manga-card-new">${rb('新作', 'しんさく')}</span>` : '';
     const card = document.createElement('div');
     card.className = 'manga-card';
     card.style.transitionDelay = `${idx * 0.1}s`;
@@ -580,3 +594,5 @@
 
 </body>
 </html>
+
+
